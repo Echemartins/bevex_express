@@ -34,7 +34,7 @@ const Header = ({ handleCalendlyClick, loading, scrollToSection })=> {
             onClick={handleCalendlyClick}
             className="bg-blue-400 hover:bg-orange-600 hover:cursor-pointer text-gray-200 text-sm px-6 py-3 rounded-2xl flex items-center justify-center gap-2"
           >
-            {loading ? <ClipLoader size={20} color="#fff" /> : "Book a free call with Cyrus"}
+            {loading ? <ClipLoader size={20} color="#fff" /> : "Talk to Cyrus"}
           </Button>
         </div>
       </div>
@@ -55,7 +55,7 @@ const Header = ({ handleCalendlyClick, loading, scrollToSection })=> {
             onClick={() => { handleCalendlyClick(); toggleMenu(); }}
             className="bg-blue-400 hover:bg-orange-600 hover:cursor-pointer text-white px-6 py-3 rounded-full flex items-center justify-center gap-2"
           >
-            {loading ? <ClipLoader size={20} color="#fff" /> : "Book a Free Call with Cyrus"}
+            {loading ? <ClipLoader size={20} color="#fff" /> : "Talk to Cyrus"}
           </Button>
         </div>
       )}

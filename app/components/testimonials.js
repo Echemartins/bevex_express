@@ -1,5 +1,3 @@
-// app/components/Testimonials.js
-
 "use client"
 import { useEffect, useRef, useState } from "react"
 import { ArrowLeft, ArrowRight } from "lucide-react"
@@ -17,19 +15,18 @@ const testimonials = [
   { text: "We felt fully supported from start to finish. Great experience!", author: "N. Davis, Real Estate Agent" }
 ]
 
-const Testimonials =()=> {
+const Testimonials = () => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [itemsToShow, setItemsToShow] = useState(3)
+  const [itemsToShow, setItemsToShow] = useState(1)
   const intervalRef = useRef(null)
-  const containerRef = useRef(null)
 
   // Set responsive number of testimonials
   useEffect(() => {
     const updateItemsToShow = () => {
       if (window.innerWidth >= 1024) {
-        setItemsToShow(4)
-      } else if (window.innerWidth >= 768) {
         setItemsToShow(3)
+      } else if (window.innerWidth >= 768) {
+        setItemsToShow(2)
       } else {
         setItemsToShow(1)
       }
@@ -76,10 +73,9 @@ const Testimonials =()=> {
       onMouseLeave={startAutoScroll}
     >
       <h2 className="text-3xl font-semibold mb-6 text-blue-800">Client Testimonials</h2>
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative max-w-6xl mx-auto overflow-hidden">
         {/* Slider */}
         <div
-          ref={containerRef}
           className="flex transition-transform duration-500 ease-in-out"
           style={{
             transform: `translateX(-${(100 / itemsToShow) * currentIndex}%)`,
@@ -89,7 +85,7 @@ const Testimonials =()=> {
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="w-full px-4 md:px-6 lg:px-8"
+              className="px-4 md:px-6 lg:px-8"
               style={{ flex: `0 0 ${100 / testimonials.length}%` }}
             >
               <div className="bg-blue-100 p-6 rounded-lg shadow-md h-full flex flex-col justify-between">
