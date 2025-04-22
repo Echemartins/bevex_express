@@ -13,14 +13,15 @@ const Header = ({ handleCalendlyClick, loading, scrollToSection })=> {
   return (
     <header className="bg-white text-blue-400 text-3xl py-4 shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-orange-400">BevEX Express</h1>
+        {/* <h1 className="text-2xl font-bold text-orange-400">BevEX Express</h1> */}
+        <img className="h-[80px]" src="/WhatsApp_Image_2025-04-18_at_13.18.34_c36a8747-removebg-preview-200x200.png" alt="bevex logo"></img>
 
         <button onClick={toggleMenu} className="md:hidden text-black">
           {menuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex gap-7 items-center">
+        <div className="hidden md:flex gap-8 items-center">
           <nav className="space-x-4 text-sm md:text-[17px] border px-10 py-4 rounded-2xl">
             <button onClick={() => scrollToSection("about")} className="hover:text-orange-400">About</button>
             <button onClick={() => scrollToSection("services")} className="hover:text-orange-400">Services</button>
@@ -30,13 +31,13 @@ const Header = ({ handleCalendlyClick, loading, scrollToSection })=> {
             <button onClick={() => scrollToSection("testimonials")} className="hover:text-orange-400">Testimonials</button>
             <button onClick={() => scrollToSection("contact")} className="hover:text-orange-400">Contact</button>
           </nav>
+        </div>
           <Button
             onClick={handleCalendlyClick}
-            className="bg-blue-400 hover:bg-orange-600 hover:cursor-pointer text-gray-200 text-sm px-6 py-3 rounded-2xl flex items-center justify-center gap-2"
+            className="hidden bg-blue-400 hover:bg-orange-600 hover:cursor-pointer text-gray-200 text-sm px-6 py-3 rounded-2xl md:flex items-center justify-center gap-2"
           >
             {loading ? <ClipLoader size={20} color="#fff" /> : "Talk to Cyrus"}
           </Button>
-        </div>
       </div>
 
       {/* Mobile Fullscreen Menu */}

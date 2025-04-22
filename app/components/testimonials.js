@@ -1,7 +1,4 @@
 "use client"
-import { useEffect, useRef, useState } from "react"
-import { ArrowLeft, ArrowRight } from "lucide-react"
-
 const testimonials = [
   { text: "BevEX helped us avoid a major fine and cleared everything before our DOB hearing. Super responsive and professional!", author: "J. Martinez, Property Manager" },
   { text: "Very efficient and reliable team. They handled all our violation issues without any hassle.", author: "T. Lewis, Commercial Owner" },
@@ -16,99 +13,21 @@ const testimonials = [
 ]
 
 const Testimonials = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const [itemsToShow, setItemsToShow] = useState(1)
-  const intervalRef = useRef(null)
-
-  // Set responsive number of testimonials
-  useEffect(() => {
-    const updateItemsToShow = () => {
-      if (window.innerWidth >= 1024) {
-        setItemsToShow(3)
-      } else if (window.innerWidth >= 768) {
-        setItemsToShow(2)
-      } else {
-        setItemsToShow(1)
-      }
-    }
-
-    updateItemsToShow()
-    window.addEventListener("resize", updateItemsToShow)
-    return () => window.removeEventListener("resize", updateItemsToShow)
-  }, [])
-
-  // Auto-scroll every 5 seconds
-//   useEffect(() => {
-//     startAutoScroll()
-//     return stopAutoScroll
-//   }, [currentIndex, itemsToShow])
-
-//   const startAutoScroll = () => {
-//     stopAutoScroll()
-//     intervalRef.current = setInterval(() => {
-//       handleNext()
-//     }, 5000)
-//   }
-
-  const stopAutoScroll = () => {
-    if (intervalRef.current) clearInterval(intervalRef.current)
-  }
-
-  const handlePrev = () => {
-    const prevIndex = currentIndex > 0 ? currentIndex - 1 : 0
-    setCurrentIndex(prevIndex)
-  }
-
-  const handleNext = () => {
-    const maxIndex = testimonials.length - itemsToShow
-    const nextIndex = currentIndex < maxIndex ? currentIndex + 1 : 0
-    setCurrentIndex(nextIndex)
-  }
-
   return (
-    <section
-      id="testimonials"
-      className="bg-white py-12 px-4 text-center relative group"
-    //   onMouseEnter={stopAutoScroll}
-    //   onMouseLeave={startAutoScroll}
-    >
+    <section id="testimonials" className="bg-white py-12 px-4 text-center">
       <h2 className="text-3xl font-semibold mb-6 text-blue-800">Client Testimonials</h2>
-      <div className="relative max-w-7xl mx-auto overflow-hidden">
-        {/* Slider */}
-        <div
-          className="flex transition-transform duration-500 ease-in-out"
-          style={{
-            transform: `translateX(-${(100 / itemsToShow) * currentIndex}%)`,
-            width: `${(100 / itemsToShow) * testimonials.length}%`
-          }}
-        >
+      <div className="overflow-x-auto no-scrollbar">
+        <div className="flex space-x-4 px-2">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className="px-4 md:px-6 lg:px-8"
-              style={{ flex: `0 0 ${100 / testimonials.length}%` }}
+              className="min-w-[80%] sm:min-w-[45%] lg:min-w-[30%] bg-blue-100 p-6 rounded-lg shadow-md flex flex-col justify-between"
             >
-              <div className="bg-blue-100 p-6 rounded-lg shadow-md h-full flex flex-col justify-between">
-                <p className="text-blue-900">“{testimonial.text}”</p>
-                <p className="mt-4 font-semibold text-blue-800">– {testimonial.author}</p>
-              </div>
+              <p className="text-blue-900">“{testimonial.text}”</p>
+              <p className="mt-4 font-semibold text-blue-800">– {testimonial.author}</p>
             </div>
           ))}
         </div>
-
-        {/* Arrows */}
-        <button
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white text-blue-800 p-2 shadow-md rounded-full hover:bg-blue-100 z-10"
-          onClick={handlePrev}
-        >
-          <ArrowLeft size={24} />
-        </button>
-        <button
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white text-blue-800 p-2 shadow-md rounded-full hover:bg-blue-100 z-10"
-          onClick={handleNext}
-        >
-          <ArrowRight size={24} />
-        </button>
       </div>
     </section>
   )
