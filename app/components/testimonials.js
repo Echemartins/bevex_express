@@ -38,17 +38,17 @@ const Testimonials = () => {
   }, [])
 
   // Auto-scroll every 5 seconds
-  useEffect(() => {
-    startAutoScroll()
-    return stopAutoScroll
-  }, [currentIndex, itemsToShow])
+//   useEffect(() => {
+//     startAutoScroll()
+//     return stopAutoScroll
+//   }, [currentIndex, itemsToShow])
 
-  const startAutoScroll = () => {
-    stopAutoScroll()
-    intervalRef.current = setInterval(() => {
-      handleNext()
-    }, 5000)
-  }
+//   const startAutoScroll = () => {
+//     stopAutoScroll()
+//     intervalRef.current = setInterval(() => {
+//       handleNext()
+//     }, 5000)
+//   }
 
   const stopAutoScroll = () => {
     if (intervalRef.current) clearInterval(intervalRef.current)
@@ -69,11 +69,11 @@ const Testimonials = () => {
     <section
       id="testimonials"
       className="bg-white py-12 px-4 text-center relative group"
-      onMouseEnter={stopAutoScroll}
-      onMouseLeave={startAutoScroll}
+    //   onMouseEnter={stopAutoScroll}
+    //   onMouseLeave={startAutoScroll}
     >
       <h2 className="text-3xl font-semibold mb-6 text-blue-800">Client Testimonials</h2>
-      <div className="relative max-w-6xl mx-auto overflow-hidden">
+      <div className="relative max-w-7xl mx-auto overflow-hidden">
         {/* Slider */}
         <div
           className="flex transition-transform duration-500 ease-in-out"
